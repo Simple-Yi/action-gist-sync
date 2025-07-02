@@ -24,14 +24,5 @@ branding:
 
 # 定义 Action 的运行方式
 runs:
-  using: "composite" # 使用复合运行步骤
-  steps:
-    # 1. 安装 Python 依赖
-    - name: Install Python dependencies
-      shell: bash
-      run: pip install -r ${{ github.action_path }}/requirements.txt
-
-    # 2. 运行 main.py
-    - name: Run main script
-      shell: bash
-      run: python ${{ github.action_path }}/main.py
+  using: 'docker'
+  image: 'Dockerfile'
