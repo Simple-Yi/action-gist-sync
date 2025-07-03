@@ -42,6 +42,7 @@ def parse_mapping_lines(lines_iterator):
         
     return mapping
 
+
 if __name__ == '__main__':
     # 1. 获取输入
     gist_id = os.environ['INPUT_GIST_ID']
@@ -117,3 +118,4 @@ if __name__ == '__main__':
     repo.remotes.origin.push()
 
     print('Successfully pushed changes to Gist.')
+    

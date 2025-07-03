@@ -8,7 +8,7 @@ inputs:
     description: 'The ID of the Gist to sync to'
     required: true
   gist_token:
-    description: 'A PAT token with gist scope'
+    description: 'A Personal access token (PAT) with gist scope'
     required: true
   mapping_file:
     description: 'Path to the file that lists which files to sync. Used if mapping_content is not set.'

@@ -1,9 +1,10 @@
-name: "Test Local Action"
+name: "Test Action"
 
 on:
   push:
     branches:
       - main
+      
   pull_request:
 
   workflow_dispatch:
@@ -16,13 +17,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. 创建一些用于测试的假文件
-      - name: Create dummy files for testing
+      # 2. 创建一些用于测试的、内容随机的假文件
+      - name: Create dummy files for testing with random content
         run: |
           mkdir -p docs
-          echo "This is a guide." > docs/guide.md
-          echo "This is the API reference." > docs/api.md
-          echo "This is the license." > LICENSE
+          echo "This is a guide, generated at $(date +%s%N)." > docs/guide.md
+          echo "This is the license, unique ID: $(uuidgen)" > LICENSE
 
       # 3. 调用本地 Action
       # 使用 `uses: ./` 来指向仓库根目录
@@ -34,12 +34,3 @@ jobs:
           mapping_content: |
             docs/guide.md:getting-started.md
             LICENSE
-
-      # 4. 检查结果 (可选)
-      # 克隆 Gist 下来看文件是否存在
-      - name: Verify Gist content (optional)
-        run: |
-          echo "Verification step would go here."
-          # git clone https://${{ secrets.GIST_TOKEN }}@gist.github.com/70da2ca87de98cd7a7ea5dd79a5cb147.git test_gist
-          # ls -l test_gist
-          # grep -q "getting-started.md" <(ls test_gist) && echo "File found!"
